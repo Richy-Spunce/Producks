@@ -1,24 +1,19 @@
-﻿@model IEnumerable<RepriseMyProducks.ViewModels.StoreMainPage>
+﻿@model IEnumerable<RepriseMyProducks.ViewModels.StoreCategory>
 
 @{
     ViewBag.Title = "Store Categories";
 }
 
-<h2>Index</h2>
+<h2>Store Categories</h2>
 
-@*<div class="row">
-    @Html.DropDownListFor(model => model.WeightCategoryId,
-                      new SelectList(Model.WeightCategories, "WeightCategoryId", "Name",
-                                     Model.WeightCategories.First().WeightCategoryId))
-</div>*@
 
 <table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StoreProducts.SingleOrDefault().Name)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StoreProducts.Single().Description)
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th></th>
     </tr>
@@ -27,7 +22,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.StoreProducts.)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

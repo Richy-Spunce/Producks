@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Producks.Model;
 
 namespace RepriseMyProducks.Controllers
 {
@@ -49,25 +50,45 @@ namespace RepriseMyProducks.Controllers
 
         [HttpGet]
         [Route("api/Products")]
-        public IEnumerable<Dtos.Product> GetProducts([FromUri] Int32? CategoryId = null, [FromUri] Int32? BrandId = null, [FromUri] Double? StartPrice = null, [FromUri] Double? EndPrice = null)
+        public IEnumerable<Product> GetProducts(double? minPrice = null,
+                                                     double? maxPrice = null)
         {
+            var products = db.Products.AsQueryable();
+            if (minPrice != null)
+            {
+                products = products.Where(p => p.Active == true && p.Price >= minPrice);
+            }
 
-            return db.Products
-                     .AsEnumerable()
-                     .Where(p => (p.Category.Active == true && p.Brand.Active == true && p.Active == true) && (
-                                 (p.CategoryId == CategoryId) || 
-                                 (p.BrandId == BrandId) || 
-                                 (p.Price >= StartPrice && p.Price <= EndPrice))
-                     )
-                     .Select(p => new Dtos.Product
-                     {
-                         Id = p.Id,
-                         Name = p.Name,
-                         Description = p.Description,
-                         Price = p.Price,
-                         StockLevel = p.StockLevel
-                     });
+            if (maxPrice != null)
+            {
+                products = products.Where(p => p.Active && p.Price <= maxPrice);
+            }
 
+            return products.AsEnumerable();
+        }
+
+        public IEnumerable<Product> FindProductsByCategory (int? CategoryId)
+        {
+            var products = db.Products.AsQueryable();
+
+            if (CategoryId != null)
+            {
+                products = products.Where(p => p.Active && p.Category.Id == CategoryId);
+            }
+
+            return products.AsEnumerable();
+        }
+
+        public IEnumerable<Product> FindProductsByBrand (int? BrandId)
+        {
+            var products = db.Products.AsQueryable();
+
+            if (BrandId != null)
+            {
+                products = products.Where(p => p.Active == true && p.BrandId == BrandId);
+            }
+
+            return products.AsEnumerable();
         }
 
         protected override void Dispose(bool disposing)

@@ -18,80 +18,33 @@ namespace RepriseMyProducks.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            StoreMainPage model = new StoreMainPage();
+            IEnumerable<ViewModels.StoreCategory> categories =
+                db.Categories.AsEnumerable()
+                             .Where(c => c.Active == true)
+                             .Select(c => new ViewModels.StoreCategory
+                             {
+                                 Id = c.Id,
+                                 Name = c.Name,
+                                 Description = c.Description
+                             });
 
-            List<StoreCategory> ModelledCategories = new List<StoreCategory>();
-            List<StoreBrand> ModelledBrands = new List<StoreBrand>();
-            List<StoreProduct> ModelledProducts = new List<StoreProduct>();
-
-            var categories = db.Categories.Where(c => c.Active == true).ToList();
-            var brands = db.Brands.Where(b => b.Active == true).ToList();
-            var products = db.Products.Where(p => p.Active).ToList();
-
-            foreach (Category cat in categories)
-            {
-                ModelledCategories.Add(new StoreCategory() {
-                    Id = cat.Id,
-                    Name = cat.Name,
-                    Description = cat.Description
-                });
-            }
-
-            foreach (Brand br in brands)
-            {
-                ModelledBrands.Add(new StoreBrand()
-                {
-                    Id = br.Id,
-                    Name = br.Name
-                });
-            }
-
-            foreach (Product prod in products)
-            {
-                ModelledProducts.Add(new StoreProduct()
-                {
-                    Name = prod.Name,
-                    Description = prod.Name,
-                    Price = prod.Price,
-                    StockLevel = (prod.StockLevel > 0 ? "In Stock" : "Out of Stock")
-                });
-            }
-
-            model.StoreBrands = ModelledBrands;
-            model.StoreCategories = ModelledCategories;
-            model.StoreProducts = ModelledProducts;
-
-            return View(model);
+            return View(categories.ToList());
         }
 
-        public ActionResult ProductsByCategory(int? id)
+        public ActionResult ProductsByCategory (int Id)
         {
-            List<ProductByCategory> ModelledProducts = new List<ProductByCategory>();
+            IEnumerable<ProductByCategory> productsByCategory =
+                db.Products.AsEnumerable()
+                           .Where(p => p.CategoryId == Id && p.Active == true)
+                           .Select(p => new ViewModels.ProductByCategory
+                           {
+                               Name = p.Name,
+                               Description = p.Description,
+                               Price = p.Price,
+                               StockLevel = (p.StockLevel > 1 ? "In Stock" : "Out of Stock")
+                           });
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var products = db.Products.Where(p => p.CategoryId == id && p.Active == true);
-
-            if (products == null)
-            {
-                return HttpNotFound();
-            }
-
-            foreach (Product prod in products)
-            {
-                ModelledProducts.Add(new ProductByCategory()
-                {
-                    Name = prod.Name,
-                    Description = prod.Name,
-                    Price = prod.Price,
-                    StockLevel = (prod.StockLevel > 0 ? "In Stock" : "Out of Stock")
-                });
-            }
-
-            return View(ModelledProducts);
+            return View(productsByCategory.ToList());
         }
     }
 }

@@ -14,5 +14,6 @@ namespace RepriseMyProducks.ViewModels
         public virtual double Price { get; set; }
 
         public virtual string StockLevel { get; set; }
+
     }
 }
