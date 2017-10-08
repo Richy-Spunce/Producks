@@ -175,6 +175,9 @@
     <Compile Include="Dtos\Brand.cs" />
     <Compile Include="Dtos\Category.cs" />
     <Compile Include="Dtos\Product.cs" />
+    <Compile Include="Dtos\UnderCutterBrand.cs" />
+    <Compile Include="Dtos\UnderCutterCategory.cs" />
+    <Compile Include="Dtos\UnderCutterProduct.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

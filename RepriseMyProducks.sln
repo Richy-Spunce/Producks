@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepriseMyProducks", "RepriseMyProducks\RepriseMyProducks.csproj", "{2C1A81E5-F69F-45E3-B2DC-4004FF5159F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producks.Model", "Producks.Model\Producks.Model.csproj", "{EA729696-E900-4147-B03F-C08EF064FED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producks.UnderCutters", "Producks.UnderCutters\Producks.UnderCutters.csproj", "{55598D83-E511-4E46-A507-2E6E8AC795EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{EA729696-E900-4147-B03F-C08EF064FED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA729696-E900-4147-B03F-C08EF064FED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA729696-E900-4147-B03F-C08EF064FED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55598D83-E511-4E46-A507-2E6E8AC795EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55598D83-E511-4E46-A507-2E6E8AC795EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55598D83-E511-4E46-A507-2E6E8AC795EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55598D83-E511-4E46-A507-2E6E8AC795EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D73CE7F4-0492-4661-BC5E-95FA391ADE06}
 	EndGlobalSection
 EndGlobal
