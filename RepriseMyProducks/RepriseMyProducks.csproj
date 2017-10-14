@@ -185,8 +185,8 @@
     <Compile Include="ViewModels\ProductByCategory.cs" />
     <Compile Include="ViewModels\StoreBrand.cs" />
     <Compile Include="ViewModels\StoreCategory.cs" />
-    <Compile Include="ViewModels\StoreMainPage.cs" />
     <Compile Include="ViewModels\StoreProduct.cs" />
+    <Compile Include="ViewModels\StoreVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

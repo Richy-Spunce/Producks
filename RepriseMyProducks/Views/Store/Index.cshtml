@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RepriseMyProducks.ViewModels.ProductByCategory>
+﻿@model RepriseMyProducks.ViewModels.StoreVM
 
 @{
     ViewBag.Title = "Store Products";
@@ -11,32 +11,29 @@
     <div class="row bottom">
         <div class="col-xs-12" style="margin-bottom: 15px;">
             <span style="font-weight: bold; margin-right: 5px;">Category</span>
-            @Html.DropDownList("SelectedCategoryId", (IEnumerable<SelectListItem>)ViewBag.Categories, "Select a Category", new { Name = "CategoryFilter", @style = "padding: 6px 12px" })
-
+            @Html.DropDownListFor(model => model.SelectedCategoryId, Model.CategoryList, "-- Select a Category --", new { Name = "CategoryFilter", @onchange = "this.form.submit()", @style = "padding: 6px 12px" })
             <span style="font-weight: bold; margin-left: 10px; margin-right: 5px;">Brand</span>
-            @Html.DropDownList("SelectedBrandId", (IEnumerable<SelectListItem>)ViewBag.Brands, "Select a Brand", new { Name = "BrandFilter" , @style = "padding: 6px 12px" })
-
-            <button type="submit" class="btn btn-success" style="float: right; width: 80px !important;">Filter</button>
+            @Html.DropDownListFor(model => model.SelectedBrandId, Model.BrandList, "-- Select a Brand --", new { Name = "BrandFilter", @onchange = "this.form.submit()", @style = "padding: 6px 12px" })
         </div>
     </div>
-
+    <hr />
     <table class="table table-striped">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Products[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Products[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.Products[0].Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StockLevel)
+                @Html.DisplayNameFor(model => model.Products[0].StockLevel)
             </th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Products)
         {
             <tr>
                 <td>
