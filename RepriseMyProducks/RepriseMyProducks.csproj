@@ -179,10 +179,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ProductByCategory.cs" />
-    <Compile Include="ViewModels\StoreBrand.cs" />
-    <Compile Include="ViewModels\StoreCategory.cs" />
-    <Compile Include="ViewModels\StoreProduct.cs" />
     <Compile Include="ViewModels\StoreVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +252,10 @@
     <ProjectReference Include="..\Producks.Model\Producks.Model.csproj">
       <Project>{ea729696-e900-4147-b03f-c08ef064fed3}</Project>
       <Name>Producks.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Producks.Repository\Producks.Repository.csproj">
+      <Project>{8ce9c52c-65b6-47aa-be20-d697b3f66e0c}</Project>
+      <Name>Producks.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Producks.UnderCutters\Producks.UnderCutters.csproj">
       <Project>{55598d83-e511-4e46-a507-2e6e8ac795ef}</Project>
