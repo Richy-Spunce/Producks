@@ -175,9 +175,6 @@
     <Compile Include="Dtos\Brand.cs" />
     <Compile Include="Dtos\Category.cs" />
     <Compile Include="Dtos\Product.cs" />
-    <Compile Include="Dtos\UnderCutterBrand.cs" />
-    <Compile Include="Dtos\UnderCutterCategory.cs" />
-    <Compile Include="Dtos\UnderCutterProduct.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,6 +256,10 @@
     <ProjectReference Include="..\Producks.Model\Producks.Model.csproj">
       <Project>{ea729696-e900-4147-b03f-c08ef064fed3}</Project>
       <Name>Producks.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Producks.UnderCutters\Producks.UnderCutters.csproj">
+      <Project>{55598d83-e511-4e46-a507-2e6e8ac795ef}</Project>
+      <Name>Producks.UnderCutters</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

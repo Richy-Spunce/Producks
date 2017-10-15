@@ -1,10 +1,6 @@
-﻿using Producks.Model;
-using System;
+﻿using Producks.UnderCutters.Dtos;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Producks.UnderCutters
 {
@@ -16,16 +12,16 @@ namespace Producks.UnderCutters
         public ServiceProxy()
         {
             client = new HttpClient();
-            client.BaseAddress = new System.Uri("http://http://undercutters.azurewebsites.net/");
+            client.BaseAddress = new System.Uri("http://undercutters.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.ParseAdd("application/json");
         }
 
-        public IEnumerable<Category> GetAllCategories()
+        public IEnumerable<UnderCutterCategory> GetAllCategories()
         {
             HttpResponseMessage response = client.GetAsync("api/Category").Result;
             if (response.IsSuccessStatusCode)
             {
-                return response.Content.ReadAsAsync<IEnumerable<Category>>().Result;
+                return response.Content.ReadAsAsync<IEnumerable<UnderCutterCategory>>().Result;
             }
             else
             {
@@ -33,12 +29,12 @@ namespace Producks.UnderCutters
             }
         }
 
-        public IEnumerable<Brand> GetAllBrands()
+        public IEnumerable<UnderCutterBrand> GetAllBrands()
         {
             HttpResponseMessage response = client.GetAsync("api/Brand").Result;
             if (response.IsSuccessStatusCode)
             {
-                return response.Content.ReadAsAsync<IEnumerable<Brand>>().Result;
+                return response.Content.ReadAsAsync<IEnumerable<UnderCutterBrand>>().Result;
             }
             else
             {
@@ -46,12 +42,25 @@ namespace Producks.UnderCutters
             }
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<UnderCutterProduct> GetAllProducts()
         {
             HttpResponseMessage response = client.GetAsync("api/Product").Result;
             if (response.IsSuccessStatusCode)
             {
-                return response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
+                return response.Content.ReadAsAsync<IEnumerable<UnderCutterProduct>>().Result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public UnderCutterProduct GetProductByName(string name)
+        {
+            HttpResponseMessage response = client.GetAsync("api/Product?category_name=").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return response.Content.ReadAsAsync<UnderCutterProduct>().Result;
             }
             else
             {

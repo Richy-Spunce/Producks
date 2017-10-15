@@ -15,15 +15,19 @@ namespace RepriseMyProducks.ViewModels
         public virtual List<Dtos.Product> Products { get; set; }
         public virtual List<SelectListItem> CategoryList { get; set; }
         public virtual List<SelectListItem> BrandList { get; set; }
+        public virtual List<Dtos.Product> HttpProducts { get; set; }
         public virtual int? SelectedCategoryId { get; set; }
         public virtual int? SelectedBrandId { get; set; }
-        public StoreVM(int? CategoryId, int? BrandId)
+        public StoreVM(int? CategoryId, int? BrandId, List<Dtos.Product> httpProducts)
         {
             if (CategoryId != null)
                 this.SelectedCategoryId = CategoryId;
 
             if (BrandId != null)
                 this.SelectedBrandId = BrandId;
+
+            if (httpProducts != null)
+                this.HttpProducts = httpProducts;
 
             RetrieveData();
         }
@@ -53,6 +57,9 @@ namespace RepriseMyProducks.ViewModels
                 Price = p.Price,
                 StockLevel = (p.StockLevel > 1 ? "In Stock" : "Out of Stock")
             }).ToList();
+
+            if (this.HttpProducts != null)
+                Products = Products.Concat(HttpProducts).ToList();
 
             Categories = db.Categories.Where(c => c.Active).Select(c => new Dtos.Category()
             {
